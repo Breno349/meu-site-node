@@ -1,17 +1,26 @@
 {
-  "functions": {
-    "core/wsgi.py": {
-      "runtime": "python3.9"
-    }
-  },
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
+    "functions": {
+        "api/server.js": {
+            "runtime": "nodejs18.x"
+        },
+        "public/app/reconhecimentoDeVoz.js": {
+            "runtime": "nodejs18.x"
+        },
+        "public/app/sortearNumero.js": {
+            "runtime": "nodejs18.x"
+        },
+        "public/app/validacao.js": {
+            "runtime": "nodejs18.x"
+        }
     },
-    {
-      "src": "/(.*)",
-      "dest": "core/wsgi.py"
-    }
-  ]
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/api/server.js"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/public/$1"
+        }
+    ]
 }
